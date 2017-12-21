@@ -1179,7 +1179,7 @@ void bongView::HandlePopupMenu(float x, float y)
 		BLooper *looper;
 		BHandler *target = selected->Target(&looper);
 		if (target == NULL) target = looper->PreferredHandler();
-		copy = new BMessage(selected->Message());
+		copy = new BMessage(*(selected->Message()));
 		looper->PostMessage(copy, target);
 		delete copy;
 		selected->SetMarked(TRUE);
