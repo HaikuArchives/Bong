@@ -502,7 +502,11 @@ bong::~bong()
 bool bong::QuitRequested(void)
 {
 //	bong_timer->PostMessage(B_QUIT_REQUESTED);
-	bong_timer->Quit();
+	if (bong_timer != NULL) {
+		bong_timer->Lock();
+		bong_timer->Quit();
+		bong_timer = NULL;
+	}
 	if (BApplication::QuitRequested())
 	{
 		return TRUE;
